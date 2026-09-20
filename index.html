@@ -27,7 +27,6 @@
   }
   .app{ display:flex; min-height:100vh; }
 
-  /* Sidebar */
   .sidebar{
     width:230px; flex-shrink:0; background:var(--surface);
     border-right:1px solid var(--border); padding:20px 12px;
@@ -45,8 +44,7 @@
   .nav-item .count{ margin-left:auto; font-size:11px; color:var(--muted-2); font-weight:600; }
   .nav-item.active .count{ color:var(--accent); }
 
-  /* Main */
-  .main{ flex:1; padding:28px 32px 80px; max-width:1400px; }
+  .main{ flex:1; padding:28px 32px 80px; max-width:1500px; }
   .page-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin-bottom:24px; flex-wrap:wrap; }
   .page-head h1{ font-size:24px; font-weight:800; margin:0 0 4px; letter-spacing:-0.01em; }
   .page-head p{ margin:0; color:var(--muted); font-size:13.5px; }
@@ -66,8 +64,8 @@
   .btn.danger:hover{ border-color:var(--high); color:var(--high); }
   .btn.sm{ padding:5px 10px; font-size:12px; }
 
-  /* Account Card */
-  .acct-card{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:18px; overflow:hidden; }
+  #accountsWrap{ display:grid; grid-template-columns:repeat(auto-fit, minmax(500px, 1fr)); gap:18px; align-items:start; }
+  .acct-card{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
   .acct-head{ display:flex; align-items:center; gap:10px; padding:13px 16px; background:var(--surface-2); border-bottom:1px solid var(--border); flex-wrap:wrap; }
   .acct-name-input{ background:transparent; border:none; color:var(--text); font-size:15px; font-weight:700; font-family:inherit; padding:4px 6px; border-radius:6px; min-width:160px; flex:1; }
   .acct-name-input:hover, .acct-name-input:focus{ background:var(--surface); outline:1px solid var(--border); }
@@ -80,7 +78,8 @@
   .acct-body{ padding:16px; display:grid; grid-template-columns:1fr 1fr; gap:20px; }
   @media (max-width:900px){ .acct-body{ grid-template-columns:1fr; } }
 
-  .section-label{ font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; margin:0 0 10px; display:flex; align-items:center; gap:6px; }
+  .section-label{ font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; margin:16px 0 10px; display:flex; align-items:center; gap:6px; }
+  .section-label:first-child{ margin-top:0; }
   .field-grid{ display:grid; grid-template-columns:1fr; gap:10px; }
   .field{ display:flex; flex-direction:column; gap:4px; }
   .field label{ font-size:11px; color:var(--muted-2); font-weight:600; }
@@ -93,14 +92,29 @@
   .token-row{ display:flex; gap:6px; }
   .token-row input{ flex:1; }
 
-  .pages-table{ width:100%; border-collapse:collapse; margin-top:6px; }
-  .pages-table th{ text-align:left; font-size:10.5px; color:var(--muted); font-weight:600; padding:6px 8px; border-bottom:1px solid var(--border); }
-  .pages-table td{ padding:6px 8px; border-bottom:1px solid var(--border); vertical-align:middle; }
-  .pages-table input, .pages-table select{ width:100%; background:var(--bg); border:1px solid var(--border); color:var(--text); font-family:inherit; font-size:12.5px; padding:6px 8px; border-radius:7px; }
-  .pages-table input:focus, .pages-table select:focus{ outline:none; border-color:var(--accent); }
-  .status-badge{ font-size:11px; font-weight:700; padding:5px 8px; border-radius:20px; border:none; cursor:pointer; }
+  /* Fixed 3-column pages block */
+  .pages3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+  @media (max-width:700px){ .pages3{ grid-template-columns:1fr; } }
+  .page-col{ background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:10px; display:flex; flex-direction:column; gap:8px; }
+  .page-col .pc-title{ font-size:11.5px; font-weight:700; color:var(--text); }
+  .page-col input{ background:var(--surface); border:1px solid var(--border); color:var(--text); font-family:inherit; font-size:12.5px; padding:7px 8px; border-radius:7px; width:100%; }
+  .page-col input:focus{ outline:none; border-color:var(--accent); }
+
+  .status-badge{ font-size:11px; font-weight:700; padding:5px 8px; border-radius:20px; border:none; cursor:pointer; align-self:flex-start; }
   .status-Active{ background:var(--accent-dim); color:var(--accent); }
   .status-Inactive{ background:var(--surface-3); color:var(--muted); }
+
+  .extra-table{ width:100%; border-collapse:collapse; margin-top:6px; }
+  .extra-table th{ text-align:left; font-size:10.5px; color:var(--muted); font-weight:600; padding:6px 8px; border-bottom:1px solid var(--border); }
+  .extra-table td{ padding:6px 8px; border-bottom:1px solid var(--border); vertical-align:middle; }
+  .extra-table input{ width:100%; background:var(--bg); border:1px solid var(--border); color:var(--text); font-family:inherit; font-size:12.5px; padding:6px 8px; border-radius:7px; }
+  .extra-table input:focus{ outline:none; border-color:var(--accent); }
+
+  .events-table{ width:100%; border-collapse:collapse; }
+  .events-table td{ padding:7px 8px; border-bottom:1px solid var(--border); font-size:13px; }
+  .events-table tr:last-child td{ border-bottom:none; }
+  .events-table td:first-child{ font-weight:600; }
+  .events-table td:last-child{ text-align:right; }
 
   .icon-btn{ background:transparent; border:1px solid transparent; color:var(--muted); cursor:pointer; font-size:12.5px; padding:5px 9px; border-radius:7px; font-family:inherit; font-weight:600; }
   .icon-btn:hover{ color:var(--text); border-color:var(--border); background:var(--surface); }
@@ -111,12 +125,19 @@
 
   .toolbar{ display:flex; gap:8px; align-items:center; margin-bottom:16px; flex-wrap:wrap; }
 
-  /* Landing Pages view */
-  table.lp-table{ width:100%; border-collapse:collapse; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
-  table.lp-table th{ text-align:left; font-size:11px; color:var(--muted); font-weight:700; padding:10px 12px; border-bottom:1px solid var(--border); background:var(--surface-2); white-space:nowrap; }
-  table.lp-table td{ padding:8px 10px; border-bottom:1px solid var(--border); font-size:13px; vertical-align:middle; }
-  table.lp-table tr:last-child td{ border-bottom:none; }
-  table.lp-table input, table.lp-table select{ width:100%; background:var(--bg); border:1px solid var(--border); color:var(--text); font-family:inherit; font-size:12.5px; padding:6px 8px; border-radius:7px; }
+  table.lp-table, table.dash-table{ width:100%; border-collapse:collapse; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
+  table.lp-table th, table.dash-table th{ text-align:left; font-size:11px; color:var(--muted); font-weight:700; padding:10px 12px; border-bottom:1px solid var(--border); background:var(--surface-2); white-space:nowrap; }
+  table.lp-table td, table.dash-table td{ padding:8px 10px; border-bottom:1px solid var(--border); font-size:12.5px; vertical-align:middle; max-width:220px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  table.lp-table tr:last-child td, table.dash-table tr:last-child td{ border-bottom:none; }
+  .table-scroll{ overflow-x:auto; border-radius:var(--radius); }
+
+  .modal-backdrop{ position:fixed; inset:0; background:rgba(0,0,0,.5); display:flex; align-items:center; justify-content:center; z-index:50; }
+  .modal{ background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:20px; width:360px; }
+  .modal h3{ margin:0 0 14px; font-size:15px; }
+  .modal .field{ margin-bottom:12px; }
+  .modal-actions{ display:flex; justify-content:flex-end; gap:8px; margin-top:16px; }
+
+  .mask-cell{ display:flex; align-items:center; gap:6px; }
 
   footer{ text-align:center; color:var(--muted-2); font-size:12px; margin-top:40px; }
 </style>
@@ -128,11 +149,19 @@
 </div>
 
 <script>
-const STORAGE_KEY = 'ad-account-manager-v1';
+const STORAGE_KEY = 'ad-account-manager-v2';
+const EVENT_NAMES = ['Page View','Leads','Scheduled','Add to Cart','Initiate Checkout','Purchase'];
 
 function uid(){ return Math.random().toString(36).slice(2,9); }
 
+function mkPageField(url, status){ return { url: url || '', status: status || 'Inactive' }; }
+
 function mkAccount(o){
+  o = o || {};
+  const events = EVENT_NAMES.map(name => {
+    const existing = (o.events || []).find(e => e.name === name);
+    return { name, status: existing ? existing.status : 'Inactive' };
+  });
   return {
     id: uid(),
     name: o.name || '',
@@ -143,7 +172,11 @@ function mkAccount(o){
     videoAds: o.videoAds || '',
     imageAds: o.imageAds || '',
     adsFromClient: o.adsFromClient || '',
-    pages: (o.pages || []).map(p => ({ id: uid(), type: p.type||'', page: p.page||'', thankYou: p.thankYou||'', status: p.status||'' })),
+    webinarPage: mkPageField(o.webinarPage && o.webinarPage.url, o.webinarPage && o.webinarPage.status),
+    webinarThankYou: mkPageField(o.webinarThankYou && o.webinarThankYou.url, o.webinarThankYou && o.webinarThankYou.status),
+    silverThankYou: mkPageField(o.silverThankYou && o.silverThankYou.url, o.silverThankYou && o.silverThankYou.status),
+    extraPages: (o.extraPages || []).map(p => ({ id: uid(), type: p.type||'', page: p.page||'', thankYou: p.thankYou||'', status: p.status||'Inactive' })),
+    events,
     tracking: {
       priority: (o.tracking && o.tracking.priority) || '',
       checked: (o.tracking && o.tracking.checked) || 'No',
@@ -162,37 +195,33 @@ function defaultData(){
       mkAccount({ name:'Ritu Sabhi Digital P', acctId:'1109475161619539', pixelId:'1587232382973747',
         accessToken:'EAAGZANTAAWC8BSGaBBLUSpU5v6mZAntBQGkaIprr0nYOALFS9PHcjqzYugriIIMAr04rXChgRBzyNWr8sXPwP6fD8haZCSXHcWZAVLRmZBz0kRtim2EgmEc5A0z5VAp8P1pjkPBjMZCv84zttZA3QcAcFjp0mJotqf7vECI4XDgK3yBbjc5rMERLpR4PNG7JYxBFQZDZD',
         videoAds:'POTENTIAL ADS - Pawan', tracking:{priority:'High', status:'Active - Improving'},
-        pages:[
-          {type:'Webinar', page:'coachritu.com/eqm-masterclass.html', thankYou:'coachritu.com/eqm-masterclass-thankyou.html', status:'Active'},
-          {type:'Multiple Question', page:'coachritu.com/The-Frequency-Problem.html', thankYou:'coachritu.com/frequency-thankyou.html', status:'Active'}
-        ] })
+        webinarPage:{url:'coachritu.com/eqm-masterclass.html', status:'Active'},
+        webinarThankYou:{url:'coachritu.com/eqm-masterclass-thankyou.html', status:'Active'},
+        extraPages:[{type:'Multiple Question', page:'coachritu.com/The-Frequency-Problem.html', thankYou:'coachritu.com/frequency-thankyou.html', status:'Active'}] })
     ]},
     { name:'Shruti', accounts:[
       mkAccount({ name:'Shruti-Sabhi Digital-P', acctId:'976091494481980', pixelId:'2023274718330730',
         accessToken:'EAAW1ZB9yfuXsBSA05oErbUhli7RnMTSPrcdPeDe3kTTqQDTYJuGBG4XOeyNZCzC4MFkkAuYceGYkJAHPJGH7Ft0rFX4jhwrfVAZARdsmQflVu20ZBzgAH8WUGIjKwDV1DZCSWGgB8ndNzOJQZAKEgDMQ3AleSfWZCTpFvypRcGzZAoSs7xqVyUxh3QmhxKEmueOMzwZDZD',
         audienceExclusion:'Last 15 Days Leads', videoAds:'31july', imageAds:'New 31st July', adsFromClient:'(Drive folder link)',
         tracking:{priority:'High'},
-        pages:[
-          {type:'Webinar', page:'lp.shrutichaudhary.in/masterclass.html', thankYou:'lp.shrutichaudhary.in/fm-thankyou.html', status:'Active'},
-          {type:'Silver', page:'', thankYou:'lp.shrutichaudhary.in/new-thank-you-purchase/', status:'Active'}
-        ] }),
+        webinarPage:{url:'lp.shrutichaudhary.in/masterclass.html', status:'Active'},
+        webinarThankYou:{url:'lp.shrutichaudhary.in/fm-thankyou.html', status:'Active'},
+        silverThankYou:{url:'lp.shrutichaudhary.in/new-thank-you-purchase/', status:'Active'} }),
       mkAccount({ name:'KarizmaticU - BYT', acctId:'5024748237622795', pixelId:'1759410564771495',
         accessToken:'(not listed separately in original sheet)', audienceExclusion:'KZU Silver, KZU Diamond' })
     ]},
     { name:'Sidhika', accounts:[
       mkAccount({ name:'Sidhika Super Parenting Hub P', acctId:'890824693797020', pixelId:'1785561182638099',
         accessToken:'EAADmfAZCxVDMBSVJkCLblJob8bYZBILjafia5soZBpzHKixZChcn4sTaxVuhIw5fFQksAb4zrKcanjjZAtWYT79GJxWRUrGoyZBKwFe1szWtbjJu1iCza2HEoCqkV6Dn8ib7gRlBcSVrX5jfreSpcGwMzFmnUB3s50jZArdQ7EugspBfK17GfAbGKhawD6jwMp0iwZDZD',
-        pages:[
-          {type:'Webinar', page:'teenageparentingsecrets.com/free-parenting-masterclass-new.html', thankYou:'teenageparentingsecrets.com/thankyou-parenting.html', status:'Active'}
-        ] })
+        webinarPage:{url:'teenageparentingsecrets.com/free-parenting-masterclass-new.html', status:'Active'},
+        webinarThankYou:{url:'teenageparentingsecrets.com/thankyou-parenting.html', status:'Active'} })
     ]},
     { name:'Vivek', accounts:[
       mkAccount({ name:'TECHNOFUNDA VENTURES PRIVATE LIMITED Aug', acctId:'1313879384151640', pixelId:'28851106401143528',
         accessToken:'EAANOAQVqMR4BSMj4ZAsV8nSsY8yApGwOWBnDSKMENVulNfNGQ4SmKr2CRvocVTiIM3929WyPUx5omSyjZBtGKMZCZCshPko3lyZB9aH4Hq5mtnprGlLojLpxMfrj3Asz2xVxNefCkkyeUdbq9Eaqt0TajSIdG23ZA28BRxN5zC8ETdo6o2r6dZC0ASdLUvNAAZDZD',
         adsFromClient:'lp.vivekmashrani.com/masterclass.html (UTM tagged)',
-        pages:[
-          {type:'Webinar', page:'lp.vivekmashrani.com/masterclass.html', thankYou:'lp.vivekmashrani.com/thanks.html', status:'Active'}
-        ] })
+        webinarPage:{url:'lp.vivekmashrani.com/masterclass.html', status:'Active'},
+        webinarThankYou:{url:'lp.vivekmashrani.com/thanks.html', status:'Active'} })
     ]},
     { name:'Geetha', accounts:[
       mkAccount({ name:'Geetha Feb 2026 Sabhi Digital', acctId:'2150312575717668',
@@ -203,11 +232,31 @@ function defaultData(){
     { name:'Aastha', accounts:[
       mkAccount({ name:'Aastha business 2', acctId:'369513248240075', pixelId:'28932585529658856',
         accessToken:'EAAFk138Ng1gBSUgYZALxmnjgL3CiZB5b7sIw2yY133eZBNYV06reW0EZCcNe7blfbPVNdLU55dmFHFEOj3z0HZBzEEjq9EZAnZBcjuXMbbSZA19JOSjA74zb9dOj1Nvu13oBZBfbfFN4oroPHX5tisaDUzYmp1b1ivyPhuZBMs5dq2t9dT00OIbJohdvkrTcFtrnQBiAZDZD',
-        pages:[
-          {type:'Webinar', page:'authenticleadershipcircle.com/aastha-masterclass.html', thankYou:'authenticleadershipcircle.com/aastha-questionnaire.html, .../aastha-thankyou.html', status:'Active'}
-        ] })
+        webinarPage:{url:'authenticleadershipcircle.com/aastha-masterclass.html', status:'Active'},
+        webinarThankYou:{url:'authenticleadershipcircle.com/aastha-questionnaire.html, .../aastha-thankyou.html', status:'Active'} })
     ]}
   ].map(c => ({ id: uid(), name: c.name, accounts: c.accounts }));
+}
+
+function migrate(parsed){
+  // upgrade older data shape (v1 "pages" array) to v2 fixed fields, if needed
+  return parsed.map(client => ({
+    ...client,
+    accounts: client.accounts.map(a => {
+      if(a.webinarPage) return mkAccount(a); // already v2-ish, just normalize via mkAccount
+      const pages = a.pages || [];
+      const webinar = pages.find(p => p.type === 'Webinar');
+      const silver = pages.find(p => p.type === 'Silver');
+      const extras = pages.filter(p => p.type !== 'Webinar' && p.type !== 'Silver');
+      return mkAccount({
+        ...a,
+        webinarPage: webinar ? { url: webinar.page, status: webinar.status } : undefined,
+        webinarThankYou: webinar ? { url: webinar.thankYou, status: webinar.status } : undefined,
+        silverThankYou: silver ? { url: silver.thankYou, status: silver.status } : undefined,
+        extraPages: extras
+      });
+    })
+  }));
 }
 
 function load(){
@@ -216,24 +265,35 @@ function load(){
     if(!raw) return defaultData();
     const parsed = JSON.parse(raw);
     if(!Array.isArray(parsed) || !parsed.length) return defaultData();
-    return parsed;
+    return migrate(parsed);
   }catch(e){ return defaultData(); }
 }
 
 let data = load();
-let currentView = data[0] ? data[0].id : 'landing';
+let currentView = data[0] ? data[0].id : 'dashboard';
+let addPageModal = null; // {clientId, accountId} while modal open
 
 function save(){
   try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }catch(e){}
 }
 
-function allPages(){
+function allPageRows(){
   const rows = [];
   data.forEach(client => client.accounts.forEach(acct => {
-    acct.pages.forEach(p => rows.push({ client: client.name, acct, page: p }));
+    if(acct.webinarPage.url || acct.webinarThankYou.url){
+      rows.push({ client, acct, kind:'webinar', label:'Webinar',
+        cols:[ {key:'webinarPage', title:'Webinar Page'}, {key:'webinarThankYou', title:'Webinar Thank You Page'} ] });
+    }
+    if(acct.silverThankYou.url){
+      rows.push({ client, acct, kind:'silver', label:'Silver',
+        cols:[ {key:'silverThankYou', title:'Silver Thank You Page'} ] });
+    }
+    acct.extraPages.forEach(p => rows.push({ client, acct, kind:'extra', extraId:p.id, label:p.type||'Other', page:p }));
   }));
   return rows;
 }
+
+function escapeHtml(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
 function renderSidebar(){
   const el = document.getElementById('sidebar');
@@ -246,7 +306,9 @@ function renderSidebar(){
   html += `<div class="nav-item" id="addClientNav">+ Add client</div>`;
   html += `<div class="nav-section-label">Overview</div>`;
   const lpActive = currentView === 'landing' ? 'active' : '';
-  html += `<div class="nav-item ${lpActive}" data-view="landing">Landing Pages<span class="count">${allPages().length}</span></div>`;
+  html += `<div class="nav-item ${lpActive}" data-view="landing">Landing Pages<span class="count">${allPageRows().length}</span></div>`;
+  const dashActive = currentView === 'dashboard' ? 'active' : '';
+  html += `<div class="nav-item ${dashActive}" data-view="dashboard">Dashboard</div>`;
   el.innerHTML = html;
 
   el.querySelectorAll('[data-view]').forEach(elm => {
@@ -275,19 +337,18 @@ function renderStatsBar(){
     </div>`;
 }
 
-function escapeHtml(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-
 function renderMain(){
   const el = document.getElementById('main');
-  if(currentView === 'landing'){ renderLandingPagesView(el); return; }
+  if(currentView === 'landing'){ renderLandingPagesView(el); renderModal(); return; }
+  if(currentView === 'dashboard'){ renderDashboardView(el); return; }
   const client = data.find(c => c.id === currentView);
-  if(!client){ currentView = 'landing'; renderMain(); return; }
+  if(!client){ currentView = 'dashboard'; renderMain(); return; }
 
-  let html = `
+  el.innerHTML = `
     <div class="page-head">
       <div>
         <h1><input class="acct-name-input" style="font-size:22px;padding:2px 4px;" value="${escapeHtml(client.name)}" data-client-name="${client.id}" /></h1>
-        <p>Account Setup + Tracking for this client. Edit any field directly.</p>
+        <p>Account Setup + Pages + Events + Tracking for this client.</p>
       </div>
       ${renderStatsBar()}
     </div>
@@ -297,7 +358,6 @@ function renderMain(){
     <div id="accountsWrap"></div>
     <button class="add-acct-btn" id="addAcctBtn">+ Add account for ${escapeHtml(client.name)}</button>
   `;
-  el.innerHTML = html;
 
   const wrap = document.getElementById('accountsWrap');
   client.accounts.forEach(acct => wrap.appendChild(renderAccountCard(client, acct)));
@@ -309,7 +369,7 @@ function renderMain(){
   document.getElementById('delClientBtn').addEventListener('click', () => {
     if(confirm('Remove this client and all their accounts?')){
       data = data.filter(c => c.id !== client.id);
-      currentView = data[0] ? data[0].id : 'landing';
+      currentView = data[0] ? data[0].id : 'dashboard';
       save(); renderAll();
     }
   });
@@ -347,7 +407,6 @@ function renderAccountCard(client, acct){
   setupCol.innerHTML = `<div class="section-label">Account Setup</div>`;
   const setupGrid = document.createElement('div');
   setupGrid.className = 'field-grid';
-
   setupGrid.appendChild(textField('Ad Account ID', acct.acctId, v => { acct.acctId = v; save(); }));
   setupGrid.appendChild(textField('Pixel ID', acct.pixelId, v => { acct.pixelId = v; save(); }));
 
@@ -374,23 +433,27 @@ function renderAccountCard(client, acct){
   setupGrid.appendChild(textField('Video ADS', acct.videoAds, v => { acct.videoAds = v; save(); }));
   setupGrid.appendChild(textField('Image ADS', acct.imageAds, v => { acct.imageAds = v; save(); }));
   setupGrid.appendChild(textField('Ads From Client', acct.adsFromClient, v => { acct.adsFromClient = v; save(); }));
-
   setupCol.appendChild(setupGrid);
 
-  // Pages sub-table
+  // Pages: fixed 3-column block
   const pagesLabel = document.createElement('div');
   pagesLabel.className = 'section-label';
-  pagesLabel.style.marginTop = '14px';
   pagesLabel.textContent = 'Pages';
   setupCol.appendChild(pagesLabel);
-  setupCol.appendChild(renderPagesTable(acct));
+  setupCol.appendChild(renderPages3(acct));
 
-  // --- Tracking column ---
+  // Extra pages (anything beyond the 3 fixed ones)
+  const extraLabel = document.createElement('div');
+  extraLabel.className = 'section-label';
+  extraLabel.textContent = 'Other Pages';
+  setupCol.appendChild(extraLabel);
+  setupCol.appendChild(renderExtraPagesTable(acct));
+
+  // --- Tracking + Events column ---
   const trackCol = document.createElement('div');
   trackCol.innerHTML = `<div class="section-label">Tracking</div>`;
   const trackGrid = document.createElement('div');
   trackGrid.className = 'field-grid';
-
   trackGrid.appendChild(selectField('Priority', ['','High','Medium','Low'], acct.tracking.priority, v => { acct.tracking.priority = v; save(); renderMain(); }));
   trackGrid.appendChild(selectField('Checked?', ['Yes','No'], acct.tracking.checked, v => { acct.tracking.checked = v; save(); }));
   trackGrid.appendChild(dateField('Date Checked', acct.tracking.dateChecked, v => { acct.tracking.dateChecked = v; save(); }));
@@ -398,50 +461,75 @@ function renderAccountCard(client, acct){
   trackGrid.appendChild(selectField('Current Status', ['Active - Improving','Active - Stable','Needs Attention','Paused','Disabled/Restricted'], acct.tracking.status, v => { acct.tracking.status = v; save(); }));
   trackGrid.appendChild(textareaField('Update / Action Needed', acct.tracking.update, v => { acct.tracking.update = v; save(); }));
   trackGrid.appendChild(textareaField('Remarks', acct.tracking.remarks, v => { acct.tracking.remarks = v; save(); }));
-
   trackCol.appendChild(trackGrid);
+
+  const eventsLabel = document.createElement('div');
+  eventsLabel.className = 'section-label';
+  eventsLabel.textContent = 'Events';
+  trackCol.appendChild(eventsLabel);
+  trackCol.appendChild(renderEventsTable(acct));
 
   body.appendChild(setupCol);
   body.appendChild(trackCol);
   card.appendChild(body);
-
   return card;
 }
 
-function renderPagesTable(acct){
+function renderPages3(acct){
+  const wrap = document.createElement('div');
+  wrap.className = 'pages3';
+  const defs = [
+    { key:'webinarPage', title:'Webinar Page' },
+    { key:'webinarThankYou', title:'Webinar Thank You Page' },
+    { key:'silverThankYou', title:'Silver Thank You Page' }
+  ];
+  defs.forEach(d => {
+    const col = document.createElement('div');
+    col.className = 'page-col';
+    const title = document.createElement('div');
+    title.className = 'pc-title';
+    title.textContent = d.title;
+    const input = document.createElement('input');
+    input.type = 'text'; input.placeholder = 'URL';
+    input.value = acct[d.key].url;
+    input.addEventListener('input', e => { acct[d.key].url = e.target.value; save(); renderSidebar(); });
+    const isActive = acct[d.key].status === 'Active';
+    const btn = document.createElement('button');
+    btn.className = 'status-badge ' + (isActive ? 'status-Active' : 'status-Inactive');
+    btn.textContent = isActive ? 'Active' : 'Inactive';
+    btn.addEventListener('click', () => { acct[d.key].status = isActive ? 'Inactive' : 'Active'; save(); renderMain(); });
+    col.appendChild(title); col.appendChild(input); col.appendChild(btn);
+    wrap.appendChild(col);
+  });
+  return wrap;
+}
+
+function renderExtraPagesTable(acct){
+  const container = document.createElement('div');
   const wrap = document.createElement('table');
-  wrap.className = 'pages-table';
+  wrap.className = 'extra-table';
   wrap.innerHTML = `<thead><tr><th style="width:20%">Type</th><th style="width:32%">Page</th><th style="width:32%">Thank You Page</th><th style="width:12%">Status</th><th></th></tr></thead><tbody></tbody>`;
   const tbody = wrap.querySelector('tbody');
 
-  acct.pages.forEach(p => {
+  acct.extraPages.forEach(p => {
     const tr = document.createElement('tr');
-    tr.appendChild(cellInput(p, 'type', 'Webinar / Silver / etc.'));
+    tr.appendChild(cellInput(p, 'type', 'e.g. Multiple Question'));
     tr.appendChild(cellInput(p, 'page', 'Page URL'));
     tr.appendChild(cellInput(p, 'thankYou', 'Thank you URL'));
-
     const statusTd = document.createElement('td');
-    const btn = document.createElement('button');
     const isActive = p.status === 'Active';
+    const btn = document.createElement('button');
     btn.className = 'status-badge ' + (isActive ? 'status-Active' : 'status-Inactive');
-    btn.textContent = p.status || 'Set';
-    btn.addEventListener('click', () => {
-      p.status = isActive ? 'Inactive' : 'Active';
-      save(); renderMain();
-    });
+    btn.textContent = isActive ? 'Active' : 'Inactive';
+    btn.addEventListener('click', () => { p.status = isActive ? 'Inactive' : 'Active'; save(); renderMain(); });
     statusTd.appendChild(btn);
     tr.appendChild(statusTd);
-
     const delTd = document.createElement('td');
     const delBtn = document.createElement('button');
     delBtn.className = 'icon-btn del'; delBtn.textContent = '✕';
-    delBtn.addEventListener('click', () => {
-      acct.pages = acct.pages.filter(x => x.id !== p.id);
-      save(); renderMain();
-    });
+    delBtn.addEventListener('click', () => { acct.extraPages = acct.extraPages.filter(x => x.id !== p.id); save(); renderMain(); });
     delTd.appendChild(delBtn);
     tr.appendChild(delTd);
-
     tbody.appendChild(tr);
   });
 
@@ -449,11 +537,10 @@ function renderPagesTable(acct){
   addBtn.className = 'icon-btn'; addBtn.style.marginTop = '6px';
   addBtn.textContent = '+ Add page';
   addBtn.addEventListener('click', () => {
-    acct.pages.push({ id: uid(), type: '', page: '', thankYou: '', status: '' });
+    acct.extraPages.push({ id: uid(), type: '', page: '', thankYou: '', status: 'Inactive' });
     save(); renderMain();
   });
 
-  const container = document.createElement('div');
   container.appendChild(wrap);
   container.appendChild(addBtn);
   return container;
@@ -466,6 +553,28 @@ function renderPagesTable(acct){
     td.appendChild(input);
     return td;
   }
+}
+
+function renderEventsTable(acct){
+  const table = document.createElement('table');
+  table.className = 'events-table';
+  const tbody = document.createElement('tbody');
+  acct.events.forEach(ev => {
+    const tr = document.createElement('tr');
+    const nameTd = document.createElement('td');
+    nameTd.textContent = ev.name;
+    const statusTd = document.createElement('td');
+    const isActive = ev.status === 'Active';
+    const btn = document.createElement('button');
+    btn.className = 'status-badge ' + (isActive ? 'status-Active' : 'status-Inactive');
+    btn.textContent = isActive ? 'Active' : 'Inactive';
+    btn.addEventListener('click', () => { ev.status = isActive ? 'Inactive' : 'Active'; save(); renderMain(); });
+    statusTd.appendChild(btn);
+    tr.appendChild(nameTd); tr.appendChild(statusTd);
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+  return table;
 }
 
 function textField(label, value, onChange){
@@ -507,43 +616,264 @@ function selectField(label, options, value, onChange){
 }
 
 function renderLandingPagesView(el){
-  const rows = allPages();
-  let html = `
+  const rows = allPageRows();
+  el.innerHTML = `
     <div class="page-head">
       <div>
         <h1>Landing Pages</h1>
-        <p>Every page across all clients — Ad Account ID / Pixel ID dropdowns are scoped to each client.</p>
+        <p>Every page across all clients. Toggling status here updates the same account's card too.</p>
       </div>
+      <button class="btn primary" id="openAddPageBtn">+ Add page</button>
     </div>
+    <div class="table-scroll">
     <table class="lp-table">
-      <thead><tr><th>Client</th><th>Ad Account ID</th><th>Pixel ID</th><th>Type</th><th>Page</th><th>Thank You Page</th><th>Status</th></tr></thead>
+      <thead><tr><th>Client</th><th>Account</th><th>Account ID</th><th>Type</th><th>Page</th><th>Thank You Page</th><th>Status</th><th></th></tr></thead>
       <tbody id="lpBody"></tbody>
     </table>
+    </div>
   `;
-  el.innerHTML = html;
+  document.getElementById('openAddPageBtn').addEventListener('click', () => {
+    addPageModal = { clientId: data[0] ? data[0].id : null };
+    renderModal();
+  });
+
   const body = document.getElementById('lpBody');
   if(rows.length === 0){
-    body.innerHTML = `<tr><td colspan="7" style="color:var(--muted);padding:16px;">No pages added yet. Go to a client and add pages under Account Setup.</td></tr>`;
+    body.innerHTML = `<tr><td colspan="8" style="color:var(--muted);padding:16px;">No pages yet. Click "+ Add page" above.</td></tr>`;
     return;
   }
-  rows.forEach(({client, acct, page}) => {
+  rows.forEach(row => {
     const tr = document.createElement('tr');
-    const tdClient = document.createElement('td'); tdClient.textContent = client;
-    const tdAcct = document.createElement('td'); tdAcct.textContent = acct.acctId || '—';
-    const tdPixel = document.createElement('td'); tdPixel.textContent = acct.pixelId || '—';
-    const tdType = document.createElement('td'); tdType.textContent = page.type || '—';
-    const tdPage = document.createElement('td'); tdPage.textContent = page.page || '—';
-    const tdTY = document.createElement('td'); tdTY.textContent = page.thankYou || '—';
+    const tdClient = document.createElement('td'); tdClient.textContent = row.client.name;
+    const tdAcct = document.createElement('td'); tdAcct.textContent = row.acct.name || '—';
+    const tdId = document.createElement('td'); tdId.textContent = row.acct.acctId || '—';
+    const tdType = document.createElement('td');
+    const tdPage = document.createElement('td');
+    const tdTY = document.createElement('td');
     const tdStatus = document.createElement('td');
-    const isActive = page.status === 'Active';
+    const tdDel = document.createElement('td');
+
+    let statusRef, label;
+    if(row.kind === 'webinar'){
+      label = 'Webinar';
+      tdPage.textContent = row.acct.webinarPage.url || '—';
+      tdTY.textContent = row.acct.webinarThankYou.url || '—';
+      statusRef = row.acct.webinarPage; // drive the shared status off webinarPage
+    } else if(row.kind === 'silver'){
+      label = 'Silver';
+      tdPage.textContent = '—';
+      tdTY.textContent = row.acct.silverThankYou.url || '—';
+      statusRef = row.acct.silverThankYou;
+    } else {
+      label = row.page.type || 'Other';
+      tdPage.textContent = row.page.page || '—';
+      tdTY.textContent = row.page.thankYou || '—';
+      statusRef = row.page;
+      const delBtn = document.createElement('button');
+      delBtn.className = 'icon-btn del'; delBtn.textContent = '✕';
+      delBtn.addEventListener('click', () => {
+        row.acct.extraPages = row.acct.extraPages.filter(x => x.id !== row.extraId);
+        save(); renderMain();
+      });
+      tdDel.appendChild(delBtn);
+    }
+    tdType.textContent = label;
+    const isActive = statusRef.status === 'Active';
     const btn = document.createElement('button');
     btn.className = 'status-badge ' + (isActive ? 'status-Active' : 'status-Inactive');
-    btn.textContent = page.status || 'Set';
-    btn.addEventListener('click', () => { page.status = isActive ? 'Inactive' : 'Active'; save(); renderMain(); });
+    btn.textContent = isActive ? 'Active' : 'Inactive';
+    btn.addEventListener('click', () => { statusRef.status = isActive ? 'Inactive' : 'Active'; save(); renderMain(); });
     tdStatus.appendChild(btn);
-    tr.append(tdClient, tdAcct, tdPixel, tdType, tdPage, tdTY, tdStatus);
+
+    tr.append(tdClient, tdAcct, tdId, tdType, tdPage, tdTY, tdStatus, tdDel);
     body.appendChild(tr);
   });
+}
+
+function renderModal(){
+  const existing = document.getElementById('modalBackdrop');
+  if(existing) existing.remove();
+  if(!addPageModal) return;
+
+  const backdrop = document.createElement('div');
+  backdrop.className = 'modal-backdrop';
+  backdrop.id = 'modalBackdrop';
+
+  const client = data.find(c => c.id === addPageModal.clientId) || data[0];
+  const account = client ? (client.accounts.find(a => a.id === addPageModal.accountId) || client.accounts[0]) : null;
+
+  const modal = document.createElement('div');
+  modal.className = 'modal';
+  modal.innerHTML = `
+    <h3>Add a page</h3>
+    <div class="field"><label>Client</label><select id="mClient"></select></div>
+    <div class="field"><label>Account</label><select id="mAccount"></select></div>
+    <div class="field"><label>Page type</label><input type="text" id="mType" placeholder="e.g. Multiple Question" /></div>
+    <div class="field"><label>Page URL</label><input type="text" id="mPage" placeholder="Page URL" /></div>
+    <div class="field"><label>Thank You Page URL</label><input type="text" id="mThankYou" placeholder="Thank you URL" /></div>
+    <div class="modal-actions">
+      <button class="btn" id="mCancel">Cancel</button>
+      <button class="btn primary" id="mSave">Add</button>
+    </div>
+  `;
+  backdrop.appendChild(modal);
+  document.body.appendChild(backdrop);
+
+  const clientSel = modal.querySelector('#mClient');
+  data.forEach(c => {
+    const o = document.createElement('option'); o.value = c.id; o.textContent = c.name;
+    if(client && c.id === client.id) o.selected = true;
+    clientSel.appendChild(o);
+  });
+  function fillAccounts(clientId){
+    const c = data.find(x => x.id === clientId);
+    const accSel = modal.querySelector('#mAccount');
+    accSel.innerHTML = '';
+    (c ? c.accounts : []).forEach(a => {
+      const o = document.createElement('option'); o.value = a.id; o.textContent = a.name || '(unnamed account)';
+      accSel.appendChild(o);
+    });
+  }
+  fillAccounts(clientSel.value);
+  clientSel.addEventListener('change', () => fillAccounts(clientSel.value));
+
+  modal.querySelector('#mCancel').addEventListener('click', () => { addPageModal = null; renderModal(); });
+  modal.querySelector('#mSave').addEventListener('click', () => {
+    const c = data.find(x => x.id === clientSel.value);
+    const accSel = modal.querySelector('#mAccount');
+    const a = c && c.accounts.find(x => x.id === accSel.value);
+    if(!a){ addPageModal = null; renderModal(); return; }
+    a.extraPages.push({
+      id: uid(),
+      type: modal.querySelector('#mType').value,
+      page: modal.querySelector('#mPage').value,
+      thankYou: modal.querySelector('#mThankYou').value,
+      status: 'Inactive'
+    });
+    save();
+    addPageModal = null;
+    renderAll();
+  });
+}
+
+function maskCell(value){
+  const wrap = document.createElement('div');
+  wrap.className = 'mask-cell';
+  const span = document.createElement('span');
+  span.textContent = value ? '••••••••' : '—';
+  const btn = document.createElement('button');
+  btn.className = 'icon-btn sm'; btn.textContent = 'Show';
+  let shown = false;
+  btn.addEventListener('click', () => {
+    shown = !shown;
+    span.textContent = shown ? (value || '—') : (value ? '••••••••' : '—');
+    btn.textContent = shown ? 'Hide' : 'Show';
+  });
+  wrap.appendChild(span); wrap.appendChild(btn);
+  return wrap;
+}
+
+function csvEscape(v){
+  const s = (v === undefined || v === null) ? '' : String(v);
+  return '"' + s.replace(/"/g, '""') + '"';
+}
+
+function exportDashboardCsv(includeTokens){
+  const headers = ['Client Name','Account Name','Account ID','Pixel ID','Webinar Page','Thank You Page','Silver Page','Access Token','Event Fire'];
+  const rows = [headers];
+  data.forEach(client => {
+    client.accounts.forEach(acct => {
+      const activeEvents = acct.events.filter(e => e.status === 'Active').map(e => e.name);
+      rows.push([
+        client.name,
+        acct.name || '',
+        acct.acctId || '',
+        acct.pixelId || '',
+        acct.webinarPage.url || '',
+        acct.webinarThankYou.url || '',
+        acct.silverThankYou.url || '',
+        includeTokens ? (acct.accessToken || '') : (acct.accessToken ? '(hidden)' : ''),
+        activeEvents.length ? activeEvents.join('; ') : 'None'
+      ]);
+    });
+  });
+  const csv = rows.map(r => r.map(csvEscape).join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'ad-account-dashboard.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function renderDashboardView(el){
+  el.innerHTML = `
+    <div class="page-head">
+      <div>
+        <h1>Dashboard</h1>
+        <p>Every account across every client, at a glance.</p>
+      </div>
+      ${renderStatsBar()}
+    </div>
+    <div class="toolbar">
+      <button class="btn primary" id="exportCsvBtn">Export CSV</button>
+      <button class="btn" id="exportTokenNote">Include Access Tokens</button>
+    </div>
+    <div class="table-scroll">
+    <table class="dash-table">
+      <thead><tr>
+        <th>Client Name</th><th>Account Name</th><th>Account ID</th><th>Pixel ID</th>
+        <th>Webinar Page</th><th>Thank You Page</th><th>Silver Page</th><th>Access Token</th><th>Event Fire</th>
+      </tr></thead>
+      <tbody id="dashBody"></tbody>
+    </table>
+    </div>
+  `;
+  let includeTokens = false;
+  const tokenBtn = document.getElementById('exportTokenNote');
+  tokenBtn.addEventListener('click', () => {
+    includeTokens = !includeTokens;
+    tokenBtn.textContent = includeTokens ? 'Access Tokens: included' : 'Include Access Tokens';
+    tokenBtn.className = includeTokens ? 'btn primary sm' : 'btn';
+  });
+  document.getElementById('exportCsvBtn').addEventListener('click', () => exportDashboardCsv(includeTokens));
+
+  const body = document.getElementById('dashBody');
+  data.forEach(client => {
+    client.accounts.forEach(acct => {
+      const tr = document.createElement('tr');
+      const cells = [
+        client.name,
+        acct.name || '—',
+        acct.acctId || '—',
+        acct.pixelId || '—',
+        acct.webinarPage.url || '—',
+        acct.webinarThankYou.url || '—',
+        acct.silverThankYou.url || '—'
+      ];
+      cells.forEach(text => {
+        const td = document.createElement('td');
+        td.textContent = text;
+        td.title = text;
+        tr.appendChild(td);
+      });
+      const tokenTd = document.createElement('td');
+      tokenTd.appendChild(maskCell(acct.accessToken));
+      tr.appendChild(tokenTd);
+
+      const activeEvents = acct.events.filter(e => e.status === 'Active').map(e => e.name);
+      const eventsTd = document.createElement('td');
+      eventsTd.textContent = activeEvents.length ? activeEvents.join(', ') : 'None';
+      eventsTd.title = eventsTd.textContent;
+      tr.appendChild(eventsTd);
+
+      body.appendChild(tr);
+    });
+  });
+  if(!body.children.length){
+    body.innerHTML = `<tr><td colspan="9" style="color:var(--muted);padding:16px;">No accounts yet.</td></tr>`;
+  }
 }
 
 function renderAll(){
